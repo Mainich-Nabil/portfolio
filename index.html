@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MAINICH NABIL - Portfolio</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-color: #1a1a2e;
+        --text-color: #e0e0e0;
+        --accent-color: #0f3460;
+        --highlight-color: #16213e;
+        --secondary-color: #e94560;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      header {
+        background-color: var(--accent-color);
+        color: var(--text-color);
+        text-align: center;
+        padding: 2rem 0;
+      }
+      h1 {
+        margin-bottom: 0.5rem;
+        font-size: 2.5rem;
+      }
+      nav {
+        background-color: var(--highlight-color);
+        padding: 1rem 0;
+      }
+      nav ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+      }
+      nav ul li {
+        margin: 0 15px;
+      }
+      nav ul li a {
+        color: var(--text-color);
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease;
+      }
+      nav ul li a:hover {
+        color: var(--secondary-color);
+      }
+      section {
+        margin: 3rem 0;
+      }
+      .project {
+        background-color: var(--highlight-color);
+        border-radius: 10px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        transition: transform 0.3s ease;
+      }
+      .project:hover {
+        transform: translateY(-5px);
+      }
+      .skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+      .skill {
+        background-color: var(--accent-color);
+        color: var(--text-color);
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        transition: background-color 0.3s ease;
+      }
+      .skill:hover {
+        background-color: var(--secondary-color);
+      }
+      footer {
+        background-color: var(--accent-color);
+        color: var(--text-color);
+        text-align: center;
+        padding: 1.5rem 0;
+        margin-top: 3rem;
+      }
+      .icon {
+        margin-right: 10px;
+        color: var(--secondary-color);
+      }
+      .profile-img {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        margin-bottom: 1rem;
+      }
+      .contact-info {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+      }
+      .contact-info a {
+        color: var(--text-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+      .contact-info a:hover {
+        color: var(--secondary-color);
+      }
+      .custome-link {
+        color: #e94560;
+        text-decoration: none;
+      }
+      .custome-link:hover {
+        color: #e0e0e0;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <img
+          src="https://raw.githubusercontent.com/Mainich-Nabil/ressources/main/me.jfif?token=GHSAT0AAAAAACWINKTJKDZZGLPD2UCTGPFSZXEOBFA"
+          alt="MAiNICH NABIL"
+          class="profile-img"
+        />
+
+        <h1>MAINICH NABIL</h1>
+        <p>
+          Data Science Student | Machine Learning Engineering Student | DevOps |
+          Web Developer | AI Enthusiast
+        </p>
+      </div>
+    </header>
+    <nav>
+      <div class="container">
+        <ul>
+          <li>
+            <a href="#about"><i class="fas fa-user icon"></i>About</a>
+          </li>
+          <li>
+            <a href="#projects"
+              ><i class="fas fa-project-diagram icon"></i>Projects</a
+            >
+          </li>
+          <li>
+            <a href="#skills"><i class="fas fa-cogs icon"></i>Skills</a>
+          </li>
+          <li>
+            <a href="#contact"><i class="fas fa-envelope icon"></i>Contact</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main class="container">
+      <section id="about">
+        <h2><i class="fas fa-user-circle icon"></i>About Me</h2>
+        <p>
+          I'm a passionate student focused on data science and cloud
+          engineering, with strong skills in web development. I enjoy combining
+          these fields to create efficient, scalable solutions for real-world
+          problems.
+        </p>
+      </section>
+      <section id="projects">
+        <h2><i class="fas fa-laptop-code icon"></i>Projects</h2>
+        <div class="project">
+          <h3><i class="fas fa-comments icon"></i>Medical ChatBot</h3>
+          <p>
+            Developed a ChatBot called Pharma-Pal that can give you uses and
+            side effects of drugs based on a dataset i scraped and using pytorch
+            model for the chatbot flask for back-end react for front-end.
+            <a
+              href="https://github.com/Mainich-Nabil/Pharma-Pal.git"
+              target="_blank"
+              class="custome-link"
+              >Project link</a
+            >
+          </p>
+        </div>
+        <div class="project">
+          <h3><i class="fas fa-laptop icon"></i>Chekers game with AI</h3>
+          <p>
+            I created a checkers game using Pygame and implemented an AI
+            opponent with the Minimax algorithm. The AI makes strategic moves by
+            evaluating different game scenarios, aiming to maximize its
+            advantage while minimizing potential losses. I also used alpha-beta
+            pruning to improve performance and make the game more challenging.
+            <a
+              class="custome-link"
+              href="https://github.com/Mainich-Nabil/chekers-AI.git"
+              target="_blank"
+              >Project link</a
+            >
+          </p>
+        </div>
+        <div class="project">
+          <h3><i class="fas fa-chart-bar icon"></i>FREECELL in C</h3>
+          <p>
+            I created a Freecell game using C as part of a challenge, where I
+            implemented complex data structures, primarily focusing on linked
+            lists. This helped manage the dynamic nature of the card movements,
+            ensuring smooth gameplay. The use of linked lists allowed efficient
+            handling of the card stacks, making the game both functional and
+            efficient.
+            <a
+              href="https://github.com/Mainich-Nabil/FREECELL.git"
+              target="_blank"
+              class="custome-link"
+              >Project link</a
+            >
+          </p>
+        </div>
+      </section>
+      <section id="skills">
+        <h2><i class="fas fa-brain icon"></i>Skills</h2>
+        <div class="skills">
+          <span class="skill"><i class="fab fa-python"></i> Python</span>
+          <span class="skill"><i class="fab fa-C"></i> C</span>
+          <span class="skill"><i class="fas fa-calculator"></i> R</span>
+          <span class="skill"><i class="fas fa-database"></i> SQL</span>
+          <span class="skill"><i class="fas fa-database"></i> MySQL</span>
+          <span class="skill"><i class="fab fa-html5"></i> HTML</span>
+          <span class="skill"><i class="fab fa-css3-alt"></i> CSS</span>
+          <span class="skill"><i class="fab fa-react"></i> React</span>
+          <span class="skill"><i class="fab fa-js"></i> JavaScript</span>
+          <span class="skill"><i class="fab fa-java"></i> Java</span>
+          <span class="skill"
+            ><i class="fas fa-robot"></i> Machine Learning</span
+          >
+          <span class="skill"
+            ><i class="fas fa-network-wired"></i> Deep Learning</span
+          >
+          <span class="skill"><i class="fab fa-python"></i> PyTorch</span>
+          <span class="skill"
+            ><i class="fas fa-chart-pie"></i> Data Visualization</span
+          >
+          <span class="skill"
+            ><i class="fas fa-square-root-alt"></i> Statistical Analysis</span
+          >
+          <span class="skill"><i class="fab fa-aws"></i> AWS S3</span>
+          <span class="skill"><i class="fab fa-aws"></i> AWS RDS</span>
+        </div>
+      </section>
+      <section id="contact">
+        <h2><i class="fas fa-paper-plane icon"></i>Contact</h2>
+        <div class="contact-info">
+          <a target="_blank" href="mailto:nabilmainich1@gmail.com"
+            ><i class="fas fa-envelope"></i> nabilmainich1@gmail.com</a
+          >
+          <a
+            target="_blank"
+            href="https://www.linkedin.com/in/mainich-nabil-497609274/"
+            ><i class="fab fa-linkedin"></i> linkedin.com/in/nabil_mainich</a
+          >
+          <a target="_blank" href="https://github.com/Mainich-Nabil"
+            ><i class="fab fa-github"></i> github.com/nabil_mainich</a
+          >
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
