@@ -3,276 +3,1117 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MAINICH NABIL - Portfolio</title>
+    <title>Mainich Nabil - Portfolio</title>
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
       rel="stylesheet"
     />
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
       :root {
-        --bg-color: #1a1a2e;
-        --text-color: #e0e0e0;
-        --accent-color: #0f3460;
-        --highlight-color: #16213e;
-        --secondary-color: #e94560;
+        --primary-dark: #0a0a0a;
+        --secondary-dark: #1a1a1a;
+        --accent-purple: #8b5cf6;
+        --accent-blue: #06b6d4;
+        --accent-pink: #ec4899;
+        --text-primary: #ffffff;
+        --text-secondary: #a1a1aa;
+        --glass-bg: rgba(255, 255, 255, 0.05);
+        --glass-border: rgba(255, 255, 255, 0.1);
       }
+
       body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        color: var(--text-primary);
         line-height: 1.6;
-        color: var(--text-color);
-        background-color: var(--bg-color);
-        margin: 0;
-        padding: 0;
+        overflow-x: hidden;
       }
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
+
+      /* Animated background */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+            circle at 20% 50%,
+            rgba(139, 92, 246, 0.1) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 20%,
+            rgba(6, 182, 212, 0.1) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 40% 80%,
+            rgba(236, 72, 153, 0.1) 0%,
+            transparent 50%
+          );
+        animation: backgroundShift 20s ease-in-out infinite;
+        z-index: -1;
       }
-      header {
-        background-color: var(--accent-color);
-        color: var(--text-color);
-        text-align: center;
-        padding: 2rem 0;
+
+      @keyframes backgroundShift {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(2deg);
+        }
       }
-      h1 {
-        margin-bottom: 0.5rem;
-        font-size: 2.5rem;
-      }
+
+      /* Navigation */
       nav {
-        background-color: var(--highlight-color);
-        padding: 1rem 0;
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        border-radius: 50px;
+        padding: 12px 20px;
+        z-index: 1000;
+        transition: all 0.3s ease;
       }
+
       nav ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
+        list-style: none;
         display: flex;
-        justify-content: center;
+        gap: 30px;
+        align-items: center;
       }
-      nav ul li {
-        margin: 0 15px;
-      }
-      nav ul li a {
-        color: var(--text-color);
+
+      nav a {
+        color: var(--text-secondary);
         text-decoration: none;
-        font-weight: bold;
-        transition: color 0.3s ease;
-      }
-      nav ul li a:hover {
-        color: var(--secondary-color);
-      }
-      section {
-        margin: 3rem 0;
-      }
-      .project {
-        background-color: var(--highlight-color);
-        border-radius: 10px;
-        padding: 1.5rem;
-        margin-bottom: 1.5rem;
-        transition: transform 0.3s ease;
-      }
-      .project:hover {
-        transform: translateY(-5px);
-      }
-      .skills {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 15px;
-      }
-      .skill {
-        background-color: var(--accent-color);
-        color: var(--text-color);
-        padding: 8px 15px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        position: relative;
+        padding: 8px 16px;
         border-radius: 20px;
-        font-size: 0.9rem;
-        transition: background-color 0.3s ease;
       }
-      .skill:hover {
-        background-color: var(--secondary-color);
+
+      nav a:hover {
+        color: var(--text-primary);
+        background: var(--glass-bg);
       }
-      footer {
-        background-color: var(--accent-color);
-        color: var(--text-color);
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         text-align: center;
-        padding: 1.5rem 0;
-        margin-top: 3rem;
+        padding: 0 20px;
+        position: relative;
       }
-      .icon {
-        margin-right: 10px;
-        color: var(--secondary-color);
+
+      .hero-content {
+        max-width: 800px;
+        animation: fadeInUp 1s ease-out;
       }
+
       .profile-img {
         width: 200px;
         height: 200px;
         border-radius: 50%;
-        margin-bottom: 1rem;
+        margin: 0 auto 2rem;
+        border: 4px solid var(--accent-purple);
+        box-shadow: 0 0 50px rgba(139, 92, 246, 0.3);
+        transition: all 0.3s ease;
+        background: linear-gradient(
+          45deg,
+          var(--accent-purple),
+          var(--accent-blue)
+        );
+        padding: 4px;
       }
-      .contact-info {
+
+      .profile-img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 80px rgba(139, 92, 246, 0.5);
+      }
+
+      .hero h1 {
+        font-size: 4rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        background: linear-gradient(
+          135deg,
+          var(--accent-purple),
+          var(--accent-blue),
+          var(--accent-pink)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: gradientShift 3s ease-in-out infinite;
+      }
+
+      @keyframes gradientShift {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        color: var(--text-secondary);
+        margin-bottom: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .cta-buttons {
         display: flex;
+        gap: 20px;
         justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 12px 30px;
+        border: none;
+        border-radius: 50px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-primary {
+        background: linear-gradient(
+          135deg,
+          var(--accent-purple),
+          var(--accent-blue)
+        );
+        color: white;
+      }
+
+      .btn-secondary {
+        background: var(--glass-bg);
+        color: var(--text-primary);
+        border: 1px solid var(--glass-border);
+        backdrop-filter: blur(10px);
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+      }
+
+      /* Section styling */
+      .section {
+        padding: 100px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section h2 {
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 3rem;
+        background: linear-gradient(
+          135deg,
+          var(--accent-purple),
+          var(--accent-blue)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* About section */
+      .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        align-items: center;
+      }
+
+      .about-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: var(--text-secondary);
+      }
+
+      .about-stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
         gap: 20px;
       }
-      .contact-info a {
-        color: var(--text-color);
+
+      .stat-card {
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        padding: 20px;
+        text-align: center;
+        backdrop-filter: blur(20px);
+        transition: all 0.3s ease;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(139, 92, 246, 0.2);
+      }
+
+      .stat-number {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--accent-purple);
+      }
+
+      .stat-label {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+
+      /* Projects section */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+      }
+
+      .project-card {
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        padding: 30px;
+        backdrop-filter: blur(20px);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .project-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(
+          135deg,
+          var(--accent-purple),
+          var(--accent-blue),
+          var(--accent-pink)
+        );
+      }
+
+      .project-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 50px rgba(139, 92, 246, 0.3);
+      }
+
+      .project-icon {
+        font-size: 2.5rem;
+        color: var(--accent-purple);
+        margin-bottom: 1rem;
+      }
+
+      .project-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: var(--text-primary);
+      }
+
+      .project-description {
+        color: var(--text-secondary);
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+      }
+
+      .project-link {
+        color: var(--accent-purple);
         text-decoration: none;
-        transition: color 0.3s ease;
+        font-weight: 600;
+        transition: all 0.3s ease;
       }
-      .contact-info a:hover {
-        color: var(--secondary-color);
+
+      .project-link:hover {
+        color: var(--accent-blue);
       }
-      .custome-link {
-        color: #e94560;
+
+      .project-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 15px;
+      }
+
+      .tech-tag {
+        background: linear-gradient(
+          135deg,
+          var(--accent-purple),
+          var(--accent-blue)
+        );
+        color: white;
+        padding: 4px 12px;
+        border-radius: 15px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      /* Skills section */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 20px;
+      }
+
+      .skill-card {
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 15px;
+        padding: 20px;
+        text-align: center;
+        backdrop-filter: blur(20px);
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .skill-card:hover {
+        transform: translateY(-5px) scale(1.05);
+        background: linear-gradient(
+          135deg,
+          var(--accent-purple),
+          var(--accent-blue)
+        );
+      }
+
+      .skill-icon {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        color: var(--accent-purple);
+        transition: all 0.3s ease;
+      }
+
+      .skill-card:hover .skill-icon {
+        color: white;
+      }
+
+      .skill-name {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+        transition: all 0.3s ease;
+      }
+
+      .skill-card:hover .skill-name {
+        color: white;
+      }
+
+      /* Contact section */
+      .contact-content {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      /* Experience section */
+      .experience-timeline {
+        max-width: 800px;
+        margin: 0 auto;
+        position: relative;
+      }
+
+      .experience-timeline::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(
+          to bottom,
+          var(--accent-purple),
+          var(--accent-blue)
+        );
+      }
+
+      .experience-card {
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        padding: 30px;
+        margin: 30px 0;
+        backdrop-filter: blur(20px);
+        transition: all 0.3s ease;
+        position: relative;
+        width: calc(50% - 40px);
+      }
+
+      .experience-card::before {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: var(--accent-purple);
+        border-radius: 50%;
+        top: 30px;
+        box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+      }
+
+      .experience-card:nth-child(odd) {
+        left: 0;
+      }
+
+      .experience-card:nth-child(odd)::before {
+        right: -50px;
+      }
+
+      .experience-card:nth-child(even) {
+        left: calc(50% + 40px);
+      }
+
+      .experience-card:nth-child(even)::before {
+        left: -50px;
+      }
+
+      .experience-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(139, 92, 246, 0.3);
+      }
+
+      .experience-header {
+        margin-bottom: 20px;
+      }
+
+      .experience-title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 5px;
+      }
+
+      .experience-company {
+        font-size: 1.1rem;
+        color: var(--accent-purple);
+        font-weight: 500;
+        margin-bottom: 5px;
+      }
+
+      .experience-date {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        font-style: italic;
+      }
+
+      .experience-content ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .experience-content li {
+        color: var(--text-secondary);
+        margin-bottom: 10px;
+        padding-left: 20px;
+        position: relative;
+        line-height: 1.6;
+      }
+
+      .experience-content li::before {
+        content: "▸";
+        position: absolute;
+        left: 0;
+        color: var(--accent-purple);
+        font-weight: bold;
+      }
+
+      @media (max-width: 768px) {
+        .experience-timeline::before {
+          left: 30px;
+        }
+
+        .experience-card {
+          width: calc(100% - 60px);
+          left: 60px !important;
+        }
+
+        .experience-card::before {
+          left: -50px !important;
+        }
+      }
+
+      .contact-links {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .contact-link {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--text-secondary);
         text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        padding: 15px 25px;
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 50px;
+        backdrop-filter: blur(20px);
       }
-      .custome-link:hover {
-        color: #e0e0e0;
-        text-decoration: underline;
+
+      .contact-link:hover {
+        color: var(--text-primary);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-in {
+        animation: fadeInUp 0.8s ease-out;
+      }
+
+      /* Responsive design */
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .about-content {
+          grid-template-columns: 1fr;
+        }
+
+        nav ul {
+          gap: 15px;
+        }
+
+        .cta-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .contact-links {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+
+      /* Smooth scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--primary-dark);
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--accent-purple);
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--accent-blue);
       }
     </style>
   </head>
   <body>
-    <header>
-      <div class="container">
-        <img
-          src="me.jfif"
-          alt="MAiNICH NABIL"
-          class="profile-img"
-        />
-
-        <h1>MAINICH NABIL</h1>
-        <p>
-          Data Science Student | Machine Learning Engineering Student | DevOps |
-          Web Developer | AI Enthusiast
-        </p>
-      </div>
-    </header>
+    <!-- Navigation -->
     <nav>
-      <div class="container">
-        <ul>
-          <li>
-            <a href="#about"><i class="fas fa-user icon"></i>About</a>
-          </li>
-          <li>
-            <a href="#projects"
-              ><i class="fas fa-project-diagram icon"></i>Projects</a
-            >
-          </li>
-          <li>
-            <a href="#skills"><i class="fas fa-cogs icon"></i>Skills</a>
-          </li>
-          <li>
-            <a href="#contact"><i class="fas fa-envelope icon"></i>Contact</a>
-          </li>
-        </ul>
-      </div>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </nav>
-    <main class="container">
-      <section id="about">
-        <h2><i class="fas fa-user-circle icon"></i>About Me</h2>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <div class="profile-img">
+          <img
+            src="me.jpg"
+            alt="Mainich Nabil"
+            style="
+              width: 100%;
+              height: 100%;
+              border-radius: 50%;
+              object-fit: cover;
+            "
+          />
+        </div>
+        <h1>Mainich Nabil</h1>
         <p>
-          I'm a passionate student focused on data science and cloud
-          engineering, with strong skills in web development. I enjoy combining
-          these fields to create efficient, scalable solutions for real-world
-          problems.
+          Data Science Student | Machine Learning Engineer | DevOps Enthusiast |
+          Full-Stack Developer
         </p>
-      </section>
-      <section id="projects">
-        <h2><i class="fas fa-laptop-code icon"></i>Projects</h2>
-        <div class="project">
-          <h3><i class="fas fa-comments icon"></i>Medical ChatBot</h3>
+        <div class="cta-buttons">
+          <a href="#projects" class="btn btn-primary">View My Work</a>
+          <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+      <h2>About Me</h2>
+      <div class="about-content">
+        <div class="about-text">
           <p>
-            Developed a ChatBot called Pharma-Pal that can give you uses and
-            side effects of drugs based on a dataset i scraped and using pytorch
-            model for the chatbot flask for back-end react for front-end.
-            <a
-              href="https://github.com/Mainich-Nabil/Pharma-Pal.git"
-              target="_blank"
-              class="custome-link"
-              >Project link</a
-            >
+            I'm a passionate technologist with a strong drive for building
+            powerful web applications at the intersection of data science,
+            machine learning, and cloud engineering. I thrive on crafting
+            full-stack solutions that are not only intelligent but also
+            user-centric and scalable.
+          </p>
+          <p>
+            Currently pursuing advanced studies in data science and machine
+            learning, I integrate this knowledge into modern web development
+            practices using frameworks like Angular, Spring Boot, and FastAPI. I
+            believe in clean code, intuitive UI/UX, and robust infrastructure to
+            bring ideas to life — from frontend to backend to cloud deployment.
+          </p>
+          <p>
+            When I'm not coding, you'll find me exploring the latest web
+            technologies, contributing to open-source projects, or experimenting
+            with innovative tools that push the boundaries of what's possible
+            online.
           </p>
         </div>
-        <div class="project">
-          <h3><i class="fas fa-laptop icon"></i>Chekers game with AI</h3>
-          <p>
-            I created a checkers game using Pygame and implemented an AI
-            opponent with the Minimax algorithm. The AI makes strategic moves by
-            evaluating different game scenarios, aiming to maximize its
-            advantage while minimizing potential losses. I also used alpha-beta
-            pruning to improve performance and make the game more challenging.
-            <a
-              class="custome-link"
-              href="https://github.com/Mainich-Nabil/chekers-AI.git"
-              target="_blank"
-              >Project link</a
-            >
+
+        <div class="about-stats">
+          <div class="stat-card">
+            <div class="stat-number">15+</div>
+            <div class="stat-label">Technologies</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">5+</div>
+            <div class="stat-label">Major Projects</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">2+</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">∞</div>
+            <div class="stat-label">Learning Mindset</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+      <h2>Featured Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-icon">
+            <i class="fas fa-envelope-open-text"></i>
+          </div>
+          <h3 class="project-title">Intelligent Email Management Platform</h3>
+          <p class="project-description">
+            A sophisticated email management system featuring intelligent spam
+            detection using fine-tuned BERT models, automated message
+            reformulation with OpenAI API, and a full-stack cloud-native
+            architecture built with Angular, Spring Boot, and FastAPI,
+            containerized with Docker and deployed on AWS.
           </p>
-        </div>
-        <div class="project">
-          <h3><i class="fas fa-chart-bar icon"></i>FREECELL in C</h3>
-          <p>
-            I created a Freecell game using C as part of a challenge, where I
-            implemented complex data structures, primarily focusing on linked
-            lists. This helped manage the dynamic nature of the card movements,
-            ensuring smooth gameplay. The use of linked lists allowed efficient
-            handling of the card stacks, making the game both functional and
-            efficient.
-            <a
-              href="https://github.com/Mainich-Nabil/FREECELL.git"
-              target="_blank"
-              class="custome-link"
-              >Project link</a
-            >
-          </p>
-        </div>
-      </section>
-      <section id="skills">
-        <h2><i class="fas fa-brain icon"></i>Skills</h2>
-        <div class="skills">
-          <span class="skill"><i class="fab fa-python"></i> Python</span>
-          <span class="skill"><i class="fab fa-C"></i> C</span>
-          <span class="skill"><i class="fas fa-calculator"></i> R</span>
-          <span class="skill"><i class="fas fa-database"></i> SQL</span>
-          <span class="skill"><i class="fas fa-database"></i> MySQL</span>
-          <span class="skill"><i class="fab fa-html5"></i> HTML</span>
-          <span class="skill"><i class="fab fa-css3-alt"></i> CSS</span>
-          <span class="skill"><i class="fab fa-react"></i> React</span>
-          <span class="skill"><i class="fab fa-js"></i> JavaScript</span>
-          <span class="skill"><i class="fab fa-java"></i> Java</span>
-          <span class="skill"
-            ><i class="fas fa-robot"></i> Machine Learning</span
-          >
-          <span class="skill"
-            ><i class="fas fa-network-wired"></i> Deep Learning</span
-          >
-          <span class="skill"><i class="fab fa-python"></i> PyTorch</span>
-          <span class="skill"
-            ><i class="fas fa-chart-pie"></i> Data Visualization</span
-          >
-          <span class="skill"
-            ><i class="fas fa-square-root-alt"></i> Statistical Analysis</span
-          >
-          <span class="skill"><i class="fab fa-aws"></i> AWS S3</span>
-          <span class="skill"><i class="fab fa-aws"></i> AWS RDS</span>
-        </div>
-      </section>
-      <section id="contact">
-        <h2><i class="fas fa-paper-plane icon"></i>Contact</h2>
-        <div class="contact-info">
-          <a target="_blank" href="mailto:nabilmainich1@gmail.com"
-            ><i class="fas fa-envelope"></i> nabilmainich1@gmail.com</a
-          >
           <a
+            href="https://github.com/Mainich-Nabil/pfa.git"
             target="_blank"
-            href="https://www.linkedin.com/in/mainich-nabil-497609274/"
-            ><i class="fab fa-linkedin"></i> linkedin.com/in/nabil_mainich</a
+            class="project-link"
           >
-          <a target="_blank" href="https://github.com/Mainich-Nabil"
-            ><i class="fab fa-github"></i> github.com/nabil_mainich</a
-          >
+            View Project <i class="fas fa-external-link-alt"></i>
+          </a>
+          <div class="project-tech">
+            <span class="tech-tag">BERT</span>
+            <span class="tech-tag">OpenAI API</span>
+            <span class="tech-tag">Angular</span>
+            <span class="tech-tag">Spring Boot</span>
+            <span class="tech-tag">FastAPI</span>
+            <span class="tech-tag">Docker</span>
+            <span class="tech-tag">AWS</span>
+          </div>
         </div>
-      </section>
-    </main>
+
+        <div class="project-card">
+          <div class="project-icon">
+            <i class="fas fa-robot"></i>
+          </div>
+          <h3 class="project-title">Pharma-Pal Medical ChatBot</h3>
+          <p class="project-description">
+            An intelligent medical chatbot built with PyTorch that provides
+            comprehensive information about drug uses and side effects. Features
+            a custom-scraped dataset, Flask backend, and React frontend for
+            seamless user interaction.
+          </p>
+          <a
+            href="https://github.com/Mainich-Nabil/Pharma-Pal.git"
+            target="_blank"
+            class="project-link"
+          >
+            View Project <i class="fas fa-external-link-alt"></i>
+          </a>
+          <div class="project-tech">
+            <span class="tech-tag">PyTorch</span>
+            <span class="tech-tag">Flask</span>
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Machine Learning</span>
+            <span class="tech-tag">NLP</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-icon">
+            <i class="fas fa-chess-board"></i>
+          </div>
+          <h3 class="project-title">AI-Powered Checkers Game</h3>
+          <p class="project-description">
+            A sophisticated checkers game featuring an AI opponent powered by
+            the Minimax algorithm with alpha-beta pruning. Built with Pygame for
+            smooth gameplay and strategic AI decision-making.
+          </p>
+          <a
+            href="https://github.com/Mainich-Nabil/chekers-AI.git"
+            target="_blank"
+            class="project-link"
+          >
+            View Project <i class="fas fa-external-link-alt"></i>
+          </a>
+          <div class="project-tech">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Pygame</span>
+            <span class="tech-tag">Minimax Algorithm</span>
+            <span class="tech-tag">Alpha-Beta Pruning</span>
+            <span class="tech-tag">Game AI</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-icon">
+            <i class="fas fa-cards-blank"></i>
+          </div>
+          <h3 class="project-title">Freecell Game Engine</h3>
+          <p class="project-description">
+            A complete Freecell card game implementation in C, showcasing
+            advanced data structure usage with linked lists for efficient card
+            management and smooth gameplay mechanics.
+          </p>
+          <a
+            href="https://github.com/Mainich-Nabil/FREECELL.git"
+            target="_blank"
+            class="project-link"
+          >
+            View Project <i class="fas fa-external-link-alt"></i>
+          </a>
+          <div class="project-tech">
+            <span class="tech-tag">C</span>
+            <span class="tech-tag">Data Structures</span>
+            <span class="tech-tag">Linked Lists</span>
+            <span class="tech-tag">Game Logic</span>
+            <span class="tech-tag">Memory Management</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+      <h2>Professional Experience</h2>
+      <div class="experience-timeline">
+        <div class="experience-card">
+          <div class="experience-header">
+            <h3 class="experience-title">Full Stack Developer Intern</h3>
+            <div class="experience-company">Seomaniak Maroc</div>
+            <div class="experience-date">July 2025 - Present</div>
+          </div>
+          <div class="experience-content">
+            <ul>
+              <li>
+                Developed full-stack web applications using Angular and Spring
+                Boot in an agile environment
+              </li>
+              <li>
+                Collaborated on team projects using Scrum methodology with
+                Trello for task management and Slack for communication
+              </li>
+              <li>
+                Implemented continuous integration and project management
+                practices with sprint reviews and team coordination
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="experience-card">
+          <div class="experience-header">
+            <h3 class="experience-title">Machine Learning Intern</h3>
+            <div class="experience-company">TCR Innovation</div>
+            <div class="experience-date">June 2024 - August 2024</div>
+          </div>
+          <div class="experience-content">
+            <ul>
+              <li>
+                Created machine learning models with comprehensive data
+                preparation, cleaning, and training of supervised and
+                unsupervised models adapted to business needs
+              </li>
+              <li>
+                Conducted problem-solving through data analysis and
+                interpretation to guide enterprise decision-making
+              </li>
+              <li>
+                Developed end-to-end ML pipelines from data preprocessing to
+                model deployment
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+      <h2>Technical Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fab fa-python"></i></div>
+          <div class="skill-name">Python</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fas fa-code"></i></div>
+          <div class="skill-name">C</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fas fa-chart-line"></i></div>
+          <div class="skill-name">R</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fas fa-database"></i></div>
+          <div class="skill-name">SQL</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fas fa-database"></i></div>
+          <div class="skill-name">MySQL</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fab fa-html5"></i></div>
+          <div class="skill-name">HTML</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fab fa-css3-alt"></i></div>
+          <div class="skill-name">CSS</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fab fa-js"></i></div>
+          <div class="skill-name">JavaScript</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fab fa-react"></i></div>
+          <div class="skill-name">React</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fab fa-java"></i></div>
+          <div class="skill-name">Java</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fas fa-brain"></i></div>
+          <div class="skill-name">Machine Learning</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fas fa-network-wired"></i></div>
+          <div class="skill-name">Deep Learning</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fas fa-fire"></i></div>
+          <div class="skill-name">PyTorch</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fas fa-chart-pie"></i></div>
+          <div class="skill-name">Data Viz</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fas fa-calculator"></i></div>
+          <div class="skill-name">Statistics</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fab fa-aws"></i></div>
+          <div class="skill-name">AWS</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fas fa-leaf"></i></div>
+          <div class="skill-name">Spring</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fab fa-angular"></i></div>
+          <div class="skill-name">Angular</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fas fa-rocket"></i></div>
+          <div class="skill-name">FastAPI</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fab fa-docker"></i></div>
+          <div class="skill-name">Docker</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fas fa-cloud"></i></div>
+          <div class="skill-name">Oracle OCI</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fas fa-flask"></i></div>
+          <div class="skill-name">Flask</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fas fa-brain"></i></div>
+          <div class="skill-name">BERT</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fas fa-robot"></i></div>
+          <div class="skill-name">OpenAI API</div>
+        </div>
+      </div>
+    </section>
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+      <h2>Let's Connect</h2>
+      <div class="contact-content">
+        <p>
+          I'm always open to discussing new opportunities, collaborations, or
+          just having a chat about technology. Feel free to reach out!
+        </p>
+        <div class="contact-links">
+          <a href="mailto:nabilmainich1@gmail.com" class="contact-link">
+            <i class="fas fa-envelope"></i>
+            Email
+          </a>
+          <a
+            href="https://www.linkedin.com/in/mainich-nabil-497609274/"
+            target="_blank"
+            class="contact-link"
+          >
+            <i class="fab fa-linkedin"></i>
+            LinkedIn
+          </a>
+          <a
+            href="https://github.com/Mainich-Nabil"
+            target="_blank"
+            class="contact-link"
+          >
+            <i class="fab fa-github"></i>
+            GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+    <script>
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Add scroll effect to navigation
+      window.addEventListener("scroll", function () {
+        const nav = document.querySelector("nav");
+        if (window.scrollY > 100) {
+          nav.style.background = "rgba(0, 0, 0, 0.8)";
+        } else {
+          nav.style.background = "var(--glass-bg)";
+        }
+      });
+
+      // Intersection Observer for animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("fade-in");
+          }
+        });
+      }, observerOptions);
+
+      // Observe all sections
+      document.querySelectorAll(".section").forEach((section) => {
+        observer.observe(section);
+      });
+
+      // Add hover effects to skill cards
+      document.querySelectorAll(".skill-card").forEach((card) => {
+        card.addEventListener("mouseenter", function () {
+          this.style.transform = "translateY(-5px) scale(1.05)";
+        });
+
+        card.addEventListener("mouseleave", function () {
+          this.style.transform = "translateY(0) scale(1)";
+        });
+      });
+
+      // Add typing effect to hero title
+      const heroTitle = document.querySelector(".hero h1");
+      const titleText = heroTitle.textContent;
+      heroTitle.textContent = "";
+
+      let i = 0;
+      const typeWriter = () => {
+        if (i < titleText.length) {
+          heroTitle.textContent += titleText.charAt(i);
+          i++;
+          setTimeout(typeWriter, 100);
+        }
+      };
+
+      // Start typing effect after a delay
+      setTimeout(typeWriter, 1000);
+    </script>
   </body>
 </html>
